@@ -1,0 +1,108 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* For buttons 1-9 and the operations*/
+.b0 { position: relative;
+  top: 100px;
+  left: 77px;
+}
+.b1 { position: relative;
+  top: 25px;
+  left: 25px;
+}
+.b2 { 
+  position: relative;
+  top: 25px;
+  left: 30px;
+
+}
+.b3 { position: relative;
+  top: 25px;
+  left: 35px;
+}
+.b4 { position: relative;
+  top: 50px;
+  left: -45px;
+}
+.b5{ position: relative;
+  top: 50px;
+  left: -40px;
+}
+.b6 { position: relative;
+  top: 50px;
+  left: -35px;
+}
+.b7 { position: relative;
+  top: 75px;
+  left: -115px;
+}
+.b8 { position: relative;
+  top: 75px;
+  left: -110px;
+}
+.b9 { position: relative;
+  top: 75px;
+  left: -105px;
+}
+
+
+.o0 { position: relative;
+  top: 25px;
+  left: -100px;
+}
+.o1 { position: relative;
+  top: 50px;
+  left: -120px;
+}
+.o2 { position: relative;
+  top: 75px;
+  left: -140px;
+}
+.o3 { position: relative;
+  top: 100px;
+  left: -160px;
+}
+.equalSign { position: relative;
+  top: 125px;
+  left: -180px;
+}
+.displayResult {
+position: relative;
+  top: 0px;
+  left: 185px;
+}
