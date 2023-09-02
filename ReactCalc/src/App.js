@@ -2,11 +2,14 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [result, setResult] = useState('')
-  const numberList = [0,1,2,3,4,5,6,7,8,9]
-  const [operation, setOperation] = useState('')
-  const operations = 
-    [
+  const displayResult = {
+    top: '200px',
+    left: '80px',
+  }
+  const [input, setInput] = useState('') // Handles user input 
+  const numberList = [0,1,2,3,4,5,6,7,8,9] // Handles buttons 0-9
+  const [result, setResult] = useState(0) // Handles the result of the calculation
+  const operations = [
       {
     'id': 0,
     'value': '+'
@@ -24,63 +27,71 @@ function App() {
     'value': '/'
   }
 ]
-  
+
+// Function to add the total input together
 function HandleButton (e){
-  //valueInput.push(e.target.value)
-  setResult(result.concat(e.target.value))
+  setInput(input.concat(e.target.value))
 }
 
-  function DisplayInput(e){
-   const array = []
-   const regex = new RegExp("[/*-+]")
-   console.log(result.match(regex))
-   setOperation(result.match(regex))
-   array.push([result.substring(0, result.match(regex).index)])
-  array.push([result.substring(result.match(regex).index+1,result.length)])
-  var res = array[0]+array[1]
-  if (operation == '+')
+// Function to take in the user's input such as "5+34" then uses regex to find the operation and seperate the numbers
+// into an array
+  function ParseInput(e){
+   const inputArray = []
+   const regex = new RegExp("[/*+-]{1}")
+   const operation = input.match(regex)
+   inputArray.push([input.substring(0, operation.index)])
+   inputArray.push([input.substring(operation.index+1,input.length)])
+   var res = 0
+
+    if (operation == '+')
   {
-    res = parseInt(array[0])+parseInt(array[1])
+    res = parseInt(inputArray[0])+parseInt(inputArray[1])
   }
   else if (operation == '*')
   {
-    res = parseInt(array[0])*parseInt(array[1])
+    res = parseInt(inputArray[0])*parseInt(inputArray[1])
   }
   else if (operation == '/')
   {
-    res = parseFloat( parseInt(array[0])/parseInt(array[1]))
+    res = parseFloat( parseInt(inputArray[0])/parseInt(inputArray[1]))
   }
   // Doesn't currently work
-  else if (operation == '-')
+  else
   {
-    res = parseInt(array[0])-parseInt(array[1])
+    res = parseInt(inputArray[0])-parseInt(inputArray[1])
   }
+  setResult(res)
+  setInput('')
   
-  alert(res)
-  setResult('')
   }
 
+
+// Displays buttons 0-9
   function DisplayCalculator() {
     return (
       numberList.map(num=>{
         return (<button key={num} value={num} onClick={HandleButton} className={'b'.concat(num)}> {num}</button>)
       })
-      )
+    )
     }
       
-    function DisplayOperations() {
-      return (
-        operations.map((val)=>{return(<button value={val.value} key={val.key} onClick={HandleButton} className={'o'.concat(val.id)}>{val.value}</button>)}))
-        }
+    // Displays +/-* (The operations of a calculator)
+  function DisplayOperations() {
+    return (
+      operations.map((val)=>{return(<button value={val.value} key={val.key} onClick={HandleButton} className={'o'.concat(val.id)}>{val.value}</button>)}))
+      }
 
 
   return (
     <div className="App">
       <h1> DisplayCalculator</h1>
-      <input className='displayResult' type="text" value={result}></input>
-     <DisplayCalculator></DisplayCalculator>
+      <input className='displayInput' type="text" value={input}></input>
+      <DisplayCalculator></DisplayCalculator>
       <DisplayOperations></DisplayOperations>
-      <button className='equalSign' onClick={DisplayInput}>=</button>
+      <button className='equalSign' onClick={ParseInput}>=</button>
+      <input type='text' value={result}></input>
+
+      
     </div>
   );
 }
